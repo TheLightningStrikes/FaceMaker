@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FaceMaker</string>
+    <string name="tab_text_1">Preset</string>
+    <string name="tab_text_2">Custom</string>
+</resources>
