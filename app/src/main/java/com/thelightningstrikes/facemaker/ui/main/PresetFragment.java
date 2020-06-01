@@ -1,4 +1,4 @@
-package com.thelightningstrikes.wrenchapp.ui.main;
+package com.thelightningstrikes.facemaker.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,21 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.thelightningstrikes.wrenchapp.R;
+import com.thelightningstrikes.facemaker.MainActivity;
+import com.thelightningstrikes.facemaker.R;
+import com.thelightningstrikes.facemaker.database.model.FacePreset;
+
+import java.util.ArrayList;
 
 public class PresetFragment extends Fragment {
-
+    private static final String TAG = "PresetFragment";
     private static final String ARG_SECTION_NUMBER = "section_number";
-
+    private ArrayList<FacePreset> facePresetNames;
     private static final String[] presets = new String[20];
+    private MainActivity mainActivity;
 
     public static PresetFragment newInstance(int index) {
         PresetFragment fragment = new PresetFragment();
@@ -33,10 +34,8 @@ public class PresetFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int index = 1;
-        if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
-        }
+        mainActivity = (MainActivity) getActivity();
+        facePresetNames = mainActivity.facePresets;
     }
 
     @Override
@@ -47,15 +46,23 @@ public class PresetFragment extends Fragment {
         LinearLayout linearLayout = root.findViewById(R.id.preset_layout);
         System.out.println(linearLayout.getOrientation());
 
-        createButtons(presets.length, linearLayout);
+        createButtons(facePresetNames, linearLayout);
         return root;
     }
 
-    public void createButtons(int amount, LinearLayout linearLayout) {
-        Button[] buttons = new Button[amount];
-        for (int i = 0; i < amount; i++) {
+    private void createButtons(final ArrayList<FacePreset> facePresets, LinearLayout linearLayout) {
+        Button[] buttons = new Button[facePresets.size()];
+        for (int i = 0; i < facePresets.size(); i++) {
+            final FacePreset fp = facePresets.get(i);
             Button button = new Button(getContext());
-            button.setText(String.valueOf(i+1));
+            button.setText(fp.getPreset_name());
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (mainActivity.isBluetoothModuleConnected()) {
+                        mainActivity.bluetoothHelper.sendData(fp.getArduino_value());
+                    }
+                }
+            });
             linearLayout.addView(button);
         }
     }

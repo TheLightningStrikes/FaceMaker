@@ -1,18 +1,14 @@
-package com.thelightningstrikes.wrenchapp.ui.main;
+package com.thelightningstrikes.facemaker.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.thelightningstrikes.wrenchapp.R;
+import com.thelightningstrikes.facemaker.R;
 
 public class CustomFragment extends Fragment {
 
@@ -29,17 +25,12 @@ public class CustomFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int index = 1;
-        if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
-        }
     }
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_custom, container, false);
-        return root;
+        return inflater.inflate(R.layout.fragment_custom, container, false);
     }
 }

@@ -1,4 +1,4 @@
-package com.thelightningstrikes.wrenchapp;
+package com.thelightningstrikes.facemaker;
 
 import org.junit.Test;
 

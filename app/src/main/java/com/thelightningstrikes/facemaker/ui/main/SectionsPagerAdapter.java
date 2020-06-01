@@ -1,4 +1,4 @@
-package com.thelightningstrikes.wrenchapp.ui.main;
+package com.thelightningstrikes.facemaker.ui.main;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.thelightningstrikes.wrenchapp.R;
+import com.thelightningstrikes.facemaker.R;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
