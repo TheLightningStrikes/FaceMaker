@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#F44336</color>
     <color name="colorAccent">#FFEB3B</color>
     <color name="textColor">#FFFFFF</color>
+    <color name="LEDMatrixBackgroundColor">#262626</color>
 </resources>
