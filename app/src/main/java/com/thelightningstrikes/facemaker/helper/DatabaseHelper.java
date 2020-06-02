@@ -42,13 +42,11 @@ public class DatabaseHelper {
         public FaceMakerDbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             facePresets = preparePresetData(context);
-
         }
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_TABLE_FACE_PRESET);
             insertPresetData(db);
             db.execSQL(CREATE_TABLE_FACE_CUSTOM);
-            Log.e(TAG, "WORK");
         }
 
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
